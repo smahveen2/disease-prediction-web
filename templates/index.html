@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 500px; margin: auto; }
+        select { width: 100%; padding: 10px; margin-top: 10px; }
+        button { padding: 10px 20px; margin-top: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Disease Prediction System</h2>
+        <form action="/predict" method="post">
+            <label for="symptoms">Select Symptoms:</label>
+            <select id="symptoms" name="symptoms" multiple="multiple">
+                {% for symptom in symptoms %}
+                    <option value="{{ symptom }}">{{ symptom }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#symptoms').select2({ placeholder: "Select symptoms", allowClear: true });
+        });
+    </script>
+</body>
+</html>
